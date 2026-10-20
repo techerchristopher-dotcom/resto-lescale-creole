@@ -88,11 +88,11 @@ footer{background:var(--encre);color:#E9E4D6;padding:34px 0;margin-top:56px;font
 </div>
 <main class="wrap">
   <div class="actions">
-    <a class="btn main" href="#reserver">Prenota un tavolo</a>
-    <a class="btn" href="tel:+261341334536">📞 +261341334536</a>
-    <a class="btn" href="https://wa.me/261341334536" target="_blank" rel="noopener">WhatsApp</a>
-    <a class="btn" href="https://www.google.com/maps/dir/?api=1&destination=-13.3969375,48.2065469" target="_blank" rel="noopener">🧭 Indicazioni</a>
-    <a class="btn" href="https://lescale-creole.rentanoo.com/carte.pdf" target="_blank" rel="noopener" download>📄 Scarica il menù</a>
+    <a class="btn main" href="#reserver" data-ev="reserver">Prenota un tavolo</a>
+    <a class="btn" data-ev="appel" href="tel:+261341334536">📞 +261341334536</a>
+    <a class="btn" data-ev="whatsapp" href="https://wa.me/261341334536" target="_blank" rel="noopener">WhatsApp</a>
+    <a class="btn" data-ev="itineraire" href="https://www.google.com/maps/dir/?api=1&destination=-13.3969375,48.2065469" target="_blank" rel="noopener">🧭 Indicazioni</a>
+    <a class="btn" data-ev="carte_pdf" href="https://lescale-creole.rentanoo.com/carte.pdf" target="_blank" rel="noopener" download>📄 Scarica il menù</a>
   </div>
 
   <section><p class="desc">La cucina della Riunione ad Ambatoloaka: rougail di salsicce, straccetti di zebù o di pollo con verdure cinesi o al pepe verde, bol renversé, riso fritto, serviti con riso e legumi. Come stuzzichini: samosa, bouchon e mezzelune. Aperto a pranzo e a cena dal lunedì al sabato.</p></section>
@@ -100,8 +100,8 @@ footer{background:var(--encre);color:#E9E4D6;padding:34px 0;margin-top:56px;font
   <section class="deux">
     <h2>Al ristorante o a domicilio: scegli tu</h2>
     <div class="deux-g">
-      <a class="choix" href="#reserver"><span class="ic">🍽️</span><span><b>Mangiare sul posto</b><small>Prenota il tuo tavolo gratis: avvisiamo noi il ristorante.</small></span></a>
-      <a class="choix tf" href="https://taxifoodnosybe.distripro207.com/r/128e68ab-8e64-4f48-bf79-acc67f3deca9" target="_blank" rel="noopener"><img src="https://rentanoo.com/partenaires/taxifood.png" alt="Taxi Food" width="44" height="44"><span><b>Fatti consegnare con Taxi Food</b><small>Ordina i suoi piatti online, consegnati a casa, in hotel o in spiaggia. Codice <strong>TAXIFOOD50</strong>: consegna a metà prezzo la prima volta.</small></span></a>
+      <a class="choix" href="#reserver" data-ev="reserver"><span class="ic">🍽️</span><span><b>Mangiare sul posto</b><small>Prenota il tuo tavolo gratis: avvisiamo noi il ristorante.</small></span></a>
+      <a class="choix tf" data-ev="taxifood" href="https://taxifoodnosybe.distripro207.com/r/128e68ab-8e64-4f48-bf79-acc67f3deca9" target="_blank" rel="noopener"><img src="https://rentanoo.com/partenaires/taxifood.png" alt="Taxi Food" width="44" height="44"><span><b>Fatti consegnare con Taxi Food</b><small>Ordina i suoi piatti online, consegnati a casa, in hotel o in spiaggia. Codice <strong>TAXIFOOD50</strong>: consegna a metà prezzo la prima volta.</small></span></a>
     </div>
   </section>
 
@@ -134,7 +134,7 @@ footer{background:var(--encre);color:#E9E4D6;padding:34px 0;margin-top:56px;font
     </form>
   </section>
 </main>
-<div class="stick"><a class="btn main" href="#reserver">Prenota un tavolo</a></div>
+<div class="stick"><a class="btn main" href="#reserver" data-ev="reserver">Prenota un tavolo</a></div>
 <footer><div class="wrap">
   <p>L'escale Créole · Ambatoloaka, Nosy Be, Madagascar · +261341334536</p>
   <p>Prenotazione del tavolo gestita da <a href="https://rentanoo.com/restaurant/lescale-creole">Rentanoo</a> · consegna con <a href="https://taxifoodnosybe.distripro207.com/r/128e68ab-8e64-4f48-bf79-acc67f3deca9">Taxi Food</a>, il tuo compagno a Nosy Be: escursioni, taxi-boat, transfer, alloggi. <a href="https://rentanoo.com/restos">Vedi tutti i ristoranti →</a></p>
@@ -142,6 +142,10 @@ footer{background:var(--encre);color:#E9E4D6;padding:34px 0;margin-top:56px;font
 <script>
 (function(){
   var H={"1":[["11:30","13:45"],["18:00","21:45"]],"2":[["11:30","13:45"],["18:00","21:45"]],"3":[["11:30","13:45"],["18:00","21:45"]],"4":[["11:30","13:45"],["18:00","21:45"]],"5":[["11:30","13:45"],["18:00","21:45"]],"6":[["11:30","13:45"],["18:00","21:45"]],"7":[]}, L={"envoi":"Invio…","ok":"✅ Richiesta inviata! Chiamiamo L'escale Créole per prenotare il tuo tavolo, poi ti confermiamo su WhatsApp.","err":"La richiesta non è partita. Riprova.","choisir":"Scegli","fermeJour":"Chiuso quel giorno","auj":"Oggi","fermeAuj":"Chiuso oggi"}, LANG="it";
+  // Statistiques (vues et clics) pour le rapport hebdomadaire du restaurant — aucune donnée personnelle
+  function ev(e){try{navigator.sendBeacon('https://rentanoo.com/api/resto-event',JSON.stringify({slug:"lescale-creole",s:'site',e:e,lang:LANG,ref:document.referrer}))}catch(x){}}
+  ev('vue');
+  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-ev]');if(a)ev(a.getAttribute('data-ev'))});
   var f=document.getElementById('resa'),msg=document.getElementById('msg');
   var tz='Indian/Antananarivo';
   function ymd(d){return new Intl.DateTimeFormat('en-CA',{timeZone:tz}).format(d)}
